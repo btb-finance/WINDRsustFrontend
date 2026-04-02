@@ -3,6 +3,7 @@ mod blockchain;
 mod components;
 mod config;
 mod state;
+mod subgraph;
 mod wallet;
 
 use leptos::*;

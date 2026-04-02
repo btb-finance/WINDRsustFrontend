@@ -6,6 +6,8 @@ use crate::{
         header::Header,
         swap::SwapPage,
         pools::PoolsPage,
+        vote::VotePage,
+        portfolio::PortfolioPage,
         toast::ToastContainer,
     },
     state::AppState,
@@ -44,27 +46,7 @@ pub fn App() -> impl IntoView {
     }
 }
 
-// ─── Placeholder pages (wired up, ready to flesh out) ────────────────────────
-
-#[component]
-fn VotePage() -> impl IntoView {
-    view! {
-        <main class="max-w-2xl mx-auto px-4 py-12">
-            <h1 class="text-2xl font-bold mb-4">"Vote"</h1>
-            <p class="text-gray-400">"Lock WIND to obtain veWIND and vote on gauge emissions."</p>
-        </main>
-    }
-}
-
-#[component]
-fn PortfolioPage() -> impl IntoView {
-    view! {
-        <main class="max-w-2xl mx-auto px-4 py-12">
-            <h1 class="text-2xl font-bold mb-4">"Portfolio"</h1>
-            <p class="text-gray-400">"Your positions, balances and claimable rewards."</p>
-        </main>
-    }
-}
+// ─── 404 ──────────────────────────────────────────────────────────────────────
 
 #[component]
 fn NotFound() -> impl IntoView {
