@@ -1,0 +1,58 @@
+[package]
+name = "wind-swap"
+version = "0.1.0"
+edition = "2021"
+
+# ─── Dependencies ─────────────────────────────────────────────────────────────
+[dependencies]
+
+# Leptos CSR (no SSR, no hydration overhead)
+leptos        = { version = "0.6", features = ["csr"] }
+leptos_router = { version = "0.6", features = ["csr"] }
+
+# Alloy 1.x – ABI types + encoding only (no full node stack, wasm-safe)
+alloy-primitives = { version = "1", default-features = false, features = ["std", "serde"] }
+alloy-sol-types  = { version = "1", default-features = false, features = ["std"] }
+
+# WASM / Browser glue
+wasm-bindgen         = "0.2"
+wasm-bindgen-futures = "0.4"
+js-sys               = "0.3"
+web-sys              = { version = "0.3", features = ["Window", "console", "Navigator"] }
+
+# getrandom – two independent semver ranges coexist in Cargo:
+#   v0.4 is pulled by alloy 1.x; it renamed the WASM feature "js" → "wasm_js"
+#   v0.2 is pulled by gloo / older transitive deps; still needs "js"
+# Declaring each as a direct dep lets Cargo unify the feature onto the right copy.
+getrandom    = { version = "0.4", features = ["wasm_js"] }
+getrandom_02 = { package = "getrandom", version = "0.2", features = ["js"] }
+
+# Async HTTP (fetch-based, wasm-native)
+gloo-net    = { version = "0.6", features = ["http"] }
+gloo-timers = { version = "0.3", features = ["futures"] }
+
+# Serialisation
+serde      = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+# Hex encode/decode
+hex = "0.4"
+
+# Logging + panic debugging
+console_error_panic_hook = "0.1"
+log         = "0.4"
+console_log = { version = "1", features = ["color"] }
+
+# Async runtime utilities
+futures = { version = "0.3", default-features = false, features = ["std"] }
+
+# ─── Build profiles ────────────────────────────────────────────────────────────
+
+[profile.release]
+opt-level     = "z"   # Optimise for binary SIZE
+lto           = true
+codegen-units = 1
+panic         = "abort"
+
+[profile.dev]
+opt-level = 1

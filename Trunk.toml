@@ -1,0 +1,16 @@
+# Trunk build configuration
+# Dev:        trunk serve          (uses Tailwind Play CDN — no npm needed)
+# Production: ./build.sh           (compiles CSS + WASM with opt-level="z")
+
+[build]
+dist       = "dist"
+public_url = "/"
+
+[serve]
+addresses = ["127.0.0.1"]
+port      = 3000
+open      = false
+
+[watch]
+# Only watch Rust source + HTML; CSS is handled by CDN in dev mode
+paths = ["src", "index.html"]

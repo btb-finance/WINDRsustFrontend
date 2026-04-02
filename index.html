@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wind Swap</title>
+  <meta name="description" content="Wind Swap – Decentralised Exchange on Base" />
+
+  <!-- Tailwind Play CDN — works in dev with zero build step.
+       For production replace this with a compiled output.css (see build.sh). -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            wind: { 400:"#38bdf8", 500:"#0ea5e9", 600:"#0284c7" }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Favicon (optional – add a wind-swap.ico to the project root) -->
+  <!-- <link rel="icon" href="favicon.ico" /> -->
+</head>
+<body class="bg-gray-950 text-white min-h-screen">
+  <!-- Leptos mounts here -->
+  <div id="app"></div>
+</body>
+</html>
